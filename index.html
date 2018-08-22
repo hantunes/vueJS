@@ -11,11 +11,19 @@
 <body>
 	<div id="app">
 		<h1 v-once>{{title}}</h1>
-		<input type="text" v-on:input='changeGreeting'></input>
+		<input type="text" v-on:input='changeGreeting'>
 		<p>{{ title }}</p>
 		<p>{{ sayHello() }}</p>
 		<a v-bind:href="link">Google </a>
 		<p v-html="finishLink"></p>
+		<p> {{counter}}</p>
+		<button v-on:click="increase(2,$event)">Increase</button>
+
+		<p v-on:mousemove="updateCoordinates">coordinates {{x}}/{{y}} 
+			<span v-on:mousemove.stop="">DEAD SPOT</span>
+		</p>
+
+		<input type="text" v-on:keyup.enter.space='alertMe'>
 	</div>
 	
 </body>

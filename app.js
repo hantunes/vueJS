@@ -6,8 +6,11 @@ new Vue({
   },
   methods: {
     
-    showAlert(event) {
+    showAlert:function(event) {
       alert("Button Clicked");
     },
+    storeKey:function(event) {
+     this.value=  event.target.value;
+    }
   }
 });

@@ -5,9 +5,26 @@ new Vue({
     link: 'http://google.pt',
     finishLink: '<a href="http://google.pt">Google</a>',
     counter:0,
+    secondCounter:0,
     x:0,
     y:0
-
+  },
+  computed:{
+    output : function(){
+      console.log('computed');
+      return this.counter > 5 ? 'Greater 5' :'Smaller than 5';
+    }
+  },
+  watch:{
+    counter : function(value){
+      var vm  = this;
+      setTimeout (
+        function()
+        {
+          vm.counter = 0; 
+        }
+        ,2000)
+    }
   },
   methods: {
   	changeGreeting: function(event) {
@@ -29,6 +46,11 @@ new Vue({
     alertMe: function(event){
 
      alert("alert");
+    },
+    result : function()
+    {
+      console.log('Method');
+      return this.counter > 5 ? 'Greater 5' :'Smaller than 5';
     }
   }
 });

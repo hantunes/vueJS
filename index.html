@@ -24,6 +24,16 @@
 		</p>
 
 		<input type="text" v-on:keyup.enter.space='alertMe'>
+
+<!-- ************************************************************************************  -->
+
+<button v-on:click="counter++">Increase</button>
+<button v-on:click="counter--">Decrease</button>
+<button v-on:click="secondCounter++">Increase Second</button>
+<p> counter: {{counter}} | {{secondCounter}}</p>
+<p> counter: {{result()}} | {{output}}</p>
+
+
 	</div>
 	
 </body>

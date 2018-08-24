@@ -2,15 +2,23 @@
 new Vue({
 	el: '#exercise',
   data: {  
-    value: ''
+    value: 0,
+    result :''
   },
-  methods: {
-    
-    showAlert:function(event) {
-      alert("Button Clicked");
+  watch:{
+    value : function(value){
+      this.result = value == 37? 'done':'not there yet';    
     },
-    storeKey:function(event) {
-     this.value=  event.target.value;
-    }
+    result : function(value){
+      
+       var vm  = this;
+       setTimeout (
+         function()
+         {
+           vm.result = ''; 
+         }
+         ,5000)
+ 
+     }
   }
 });

@@ -8,43 +8,40 @@
 	<link rel="stylesheet" href="">
 	<script src="node_modules/vue/dist/vue.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
-
 </head>
 
 <body>
-	<div id="app">
-		<h1 v-once>{{title}}</h1>
-		<input type="text" v-on:input='changeGreeting'>
-		<p>{{ title }}</p>
-		<p>{{ sayHello() }}</p>
-		<a v-bind:href="link">Google </a>
-		<p v-html="finishLink"></p>
-		<p> {{counter}}</p>
-		<button v-on:click="increase(2,$event)">Increase</button>
-
-		<p v-on:mousemove="updateCoordinates">coordinates {{x}}/{{y}}
-			<span v-on:mousemove.stop="">DEAD SPOT</span>
-		</p>
-
-		<input type="text" v-on:keyup.enter.space='alertMe'>
-
-		<!-- ************************************************************************************  -->
-
-		<button v-on:click="counter++">Increase</button>
-		<button v-on:click="counter--">Decrease</button>
-		<button v-on:click="secondCounter++">Increase Second</button>
-		<p> counter: {{counter}} | {{secondCounter}}</p>
-		<p> counter: {{result()}} | {{output}}</p>
-
-		<!-- ************************************************************************************  -->
-
-		<div class="demo" @click="attachRed = !attachRed" :class="divClasses"></div>
-		<div class="demo" :class="{red: attachRed}"></div>
-		<div class="demo" :class="[color,{red:this.attachRed,blue: !this.attachRed}]"></div>
-
-
-		<input type="text" v-model='color'>
-	</div>
+	<div id="exercise">
+		<!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink"
+		        class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
+		<div>
+		  <button @click="startEffect">Start Effect</button>
+		  <div id="effect" ></div>
+		</div>
+		<!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
+		<div>I got no class :(</div>
+		<!-- 3) Let the user enter a class (create some example classes) and attach it -->
+		<div>
+		  <input type="text">
+		  <div></div>
+		</div>
+		<!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
+		<div>
+		  <input type="text">
+		  <input type="text">
+		  <div></div>
+		</div>
+		<!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
+		<div>
+		  <input type="text">
+		  <div></div>
+		</div>
+		<!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
+		<div>
+		  <button v-on:click="startProgress">Start Progress</button>
+		  <div></div>
+		</div>
+	  </div>
 
 </body>
 <script src="vue.js"></script>

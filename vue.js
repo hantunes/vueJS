@@ -7,13 +7,22 @@ new Vue({
     counter:0,
     secondCounter:0,
     x:0,
-    y:0
+    y:0,
+    attachRed:false,
+    color:'green'
   },
   computed:{
     output : function(){
       console.log('computed');
       return this.counter > 5 ? 'Greater 5' :'Smaller than 5';
+    },
+    divClasses :function(){
+      return {
+        red:this.attachRed,
+        blue: !this.attachRed
+      };
     }
+
   },
   watch:{
     counter : function(value){

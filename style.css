@@ -18,6 +18,25 @@
     background-color: green;
   }
   .blue{
-    background-color: green;
+    background-color: blue;
+  }
+  .big{
+    width: 100px;
   }
   
+  .small{
+    width: 50px;
+  }
+  .userClass{
+    width: 350px;
+    height: 50px;
+  }
+  .user2Class{
+    width: 350px;
+    height: 50px;
+    background-color: gray;
+  }
+  .myClass
+  {
+    background-color: orange;
+  }

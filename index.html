@@ -19,17 +19,17 @@
 		  <div id="effect" v-bind:class="mClass" >{{mClass}}</div>
 		</div>
 		<!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
-		<div>I got no class :(</div>
+		<div :class="[color,  {small:this.sizeSmall, big: !this.sizeSmall}]">I got no class :( {{this.sizeSmall}}</div>
 		<!-- 3) Let the user enter a class (create some example classes) and attach it -->
 		<div>
-		  <input type="text">
-		  <div></div>
+		  <input type="text" v-model="userClass">
+		  <div  v-bind:class="userClass">{{userClass}}</div>
 		</div>
 		<!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
 		<div>
-		  <input type="text">
-		  <input type="text">
-		  <div></div>
+		  <input type="text"  v-model="user2Class">
+		  <input type="text"  v-model="useMyClass">
+		  <div :class="[user2Class,  {myClass:this.useMyClass}]" >{{this.useMyClass}}</div>
 		</div>
 		<!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
 		<div>

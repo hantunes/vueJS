@@ -13,39 +13,17 @@
 
 <body>
 	<div id="app">
-		<h1 v-once>{{title}}</h1>
-		<input type="text" v-on:input='changeGreeting'>
-		<p>{{ title }}</p>
-		<p>{{ sayHello() }}</p>
-		<a v-bind:href="link">Google </a>
-		<p v-html="finishLink"></p>
-		<p> {{counter}}</p>
-		<button v-on:click="increase(2,$event)">Increase</button>
+		<p v-if="show">You can see me!</p>
+		<p v-else>Do you also see me?</p>
 
-		<p v-on:mousemove="updateCoordinates">coordinates {{x}}/{{y}}
-			<span v-on:mousemove.stop="">DEAD SPOT</span>
-		</p>
+		<template v-if="show">
+			<p >Inside template </p>
+		</template>
 
-		<input type="text" v-on:keyup.enter.space='alertMe'>
+		<p v-show="show">USING V SHOW </p>
 
-		<!-- ************************************************************************************  -->
-
-		<button v-on:click="counter++">Increase</button>
-		<button v-on:click="counter--">Decrease</button>
-		<button v-on:click="secondCounter++">Increase Second</button>
-		<p> counter: {{counter}} | {{secondCounter}}</p>
-		<p> counter: {{result()}} | {{output}}</p>
-
-		<!-- ************************************************************************************  -->
-
-		<div class="demo" @click="attachRed = !attachRed" :class="divClasses"></div>
-		<div class="demo" :class="{red: attachRed}"></div>
-		<div class="demo" :class="[color,{red:this.attachRed,blue: !this.attachRed}]"></div>
-
-
-		<input type="text" v-model='color'>
+		<button @click="show=!show">Show_HIDE</button>
 	</div>
-
 </body>
 <script src="vue.js"></script>
 

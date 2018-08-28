@@ -1,21 +1,20 @@
 new Vue({
   el: '#exercise',
   data: {
-    cClass:''
+    mClass: '',
+    timer: ''
   },
   methods: {
-    startEffect: function() {    
-        
-      console.log("ENTROU");
+    startEffect: function () {
       var vm = this;
-      setInterval  (
-        function()
-        {
-          console.log("I");
-          vm.cClass= vm.cClass == '.highlight' ? '.shrink':'.highlight';
-        }
-        ,2000);
-    }
+      this.mClass = 'highlight';
 
-    }  
+      if (this.timer == '') {
+        this.timer = setInterval(
+          function () {
+            vm.mClass = vm.mClass == 'highlight' ? 'shrink' : 'highlight';
+          }, 5000);
+      }
+    }
+  }
 });

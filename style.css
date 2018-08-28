@@ -40,3 +40,9 @@
   {
     background-color: orange;
   }
+  .progressBar{
+    width: 350px;
+    height: 20px;
+    background-color: red;
+  }
+

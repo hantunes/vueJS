@@ -17,12 +17,32 @@
 		<p v-else>Do you also see me?</p>
 
 		<template v-if="show">
-			<p >Inside template </p>
+			<p>Inside template </p>
 		</template>
 
 		<p v-show="show">USING V SHOW </p>
-
 		<button @click="show=!show">Show_HIDE</button>
+
+		<ul>
+			<li v-for="(ingredient,i) in ingredients">{{ingredient}} ({{i}})</li>
+
+		</ul>
+
+		<hr>
+		<li v-for="person in persons">
+			<span v-for="(value, key, index) in person">{{key}}:{{value}}
+				({{index}})
+			</span>
+		</li>
+		<hr>
+
+
+		<template v-for="(ingredient,index) in ingredients">
+			<h1>{{ingredient}} </h1>
+			<p>{{index}}</p>
+		</template>
+
+
 	</div>
 </body>
 <script src="vue.js"></script>

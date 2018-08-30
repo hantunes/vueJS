@@ -24,9 +24,10 @@
 		<button @click="show=!show">Show_HIDE</button>
 
 		<ul>
-			<li v-for="(ingredient,i) in ingredients">{{ingredient}} ({{i}})</li>
+			<li v-for="(ingredient,i) in ingredients" :key="ingredient">{{ingredient}} ({{i}})</li>
 
 		</ul>
+		<button @click="ingredients.push('spices')" >Add New</button>
 
 		<hr>
 		<li v-for="person in persons">
@@ -42,7 +43,7 @@
 			<p>{{index}}</p>
 		</template>
 
-
+<span v-for="n in 10"> {{n}}</span>
 	</div>
 </body>
 <script src="vue.js"></script>

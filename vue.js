@@ -1,106 +1,71 @@
-new Vue({
-	el: '#app',
-	data: {
-    playerHealth: 100,
-    monsterHealth:100,
-    gameIsRunning:false,
-    turns:[]
+var data = {
+  title: 'The  Instance',
+  showParagraph: false
+}
+
+Vue.component('hello',{
+  template:'<h1>Hello! CC</h1>'
+});
+
+var vm1 = new Vue({  
+  data: data,
+  methods: {
+    show: function() {
+      this.showParagraph = true;
+      this.updateTitle('The  Instance (Updated)');
+      console.log(this.$refs.myButton);
+      this.$refs.myButton.innerText = 'Test';
+    },
+    updateTitle: function(title) {
+      this.title = title;
+    }
   },
-  methods:{
-    startGame: function()
-    {
-      this.gameIsRunning = true;
-      this.monsterHealth = 100;
-      this.playerHealth = 100;
-      this.turns =               [];
-    },
-    attack: function()
-    {  
-     var damage= this.monsterHealth -= this.calculateDamage(3,10);
-      this.turns.unshift({
-        isPlayer:true,
-        text: "Player hits Monster for " + damage
-      });
-      if(this.checkWin())
-      {
-        return;
-      }
-      this.monsterAttacks();
-    },
-    specialAttack: function()
-    {
-      var damage = this.calculateDamage(10,20);
-      this.monsterHealth -= damage;
-
-      this.turns.unshift({
-        isPlayer:true,
-        text: "Player hits Monster for " + damage
-      });
-
-      if(this.checkWin())
-      {
-        return;
-      }
-      
-
-     this.monsterAttacks();
-    },
-    heal: function()
-    {
-      if(this.playerHealth <=90)
-        this.playerHealth += 10;
-      else
-        this.playerHealth = 100;
-
-        this.turns.unshift({
-          isPlayer:true,
-          text: "Player heals 10"
-        });
-
-      this.monsterAttacks();
-    },
-    giveUp: function()
-    {
-      this.gameIsRunning = false;
-    },
-    monsterAttacks:function()
-    {
-      var damage = this.calculateDamage(5,12);
-      this.playerHealth -= damage;
-      this.checkWin();
-
-      this.turns.unshift({
-        isPlayer:false,
-        text: "Monster hits player for " + damage
-      });
-    },
-    calculateDamage : function(min, max)
-    {
-     return  Math.max( Math.floor((Math.random()*max)) + 1,min);
-    },
-    checkWin: function()
-    {
-      if(this.monsterHealth <=0)
-      {
-        if(confirm("you won new game ? "))
-        {
-          this.startGame();
-        }
-        else
-        this.gameIsRunning = false;
-        return true;
-        
-      }else if(this.playerHealth <=0)      
-      {
-        if(confirm("You Lost new game ? "))
-        {
-          this.startGame();
-        }
-        else
-        this.gameIsRunning = false;
-        return true;
-      }
-      return false;
+  computed: {
+    lowercaseTitle: function() {
+      return this.title.toLowerCase();
+    }
+  },
+  watch: {
+    title: function(value) {
+     // alert('Title changed, new value: ' + value);
     }
   }
 });
+
+vm1.$mount('#app1');
+
+vm1.newProp = 'Val';
+console.log(vm1.$data.title);
+
+vm1.$refs.heading.innerText = "something else";
+
+setTimeout ( function(){
+ 
+  vm1.title = "Changed by timer";
+ // vm1.show();
+}
+  ,3000)
+
+var vm2 = new Vue({
+  el: '#app2',
+  data: {
+    title: 'The  Instance 2',
+    showParagraph: false
+  },
+  methods: {
+    onChange: function() {
+     vm1.title = "Changed";
+      
+    }
+  } 
+  
+});
+
+
+var vm3 = new Vue({
+el:'.hello',
+  template:'<h1>Hello App33</h1>'
+});
+
+//vm3.$mount();
+//document.getElementById('app3').appendChild(vm3.$el);

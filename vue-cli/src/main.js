@@ -3,7 +3,7 @@
 //vue init webpack-simple  vue-cli
 //cd .\vue-cli\
 //npm install
-// npm run dev
+// npm run dev   or npm run build 
 
 import Vue from 'vue'
 import App from './App.vue'

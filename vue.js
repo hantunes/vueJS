@@ -27,7 +27,7 @@ var vm1 = new Vue({
   },
   watch: {
     title: function(value) {
-     // alert('Title changed, new value: ' + value);
+      alert('Title changed, new value: ' + value);
     }
   }
 });

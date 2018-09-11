@@ -1,9 +1,9 @@
-//npm install -g vue-cli
-// https://github.com/vuejs/vue-cli
-//vue init webpack-simple  vue-cli
-//cd .\vue-cli\
-//npm install
-// npm run dev   or npm run build 
+# npm install -g vue-cli
+# https://github.com/vuejs/vue-cli
+# vue init webpack-simple  vue-cli
+# cd .\vue-cli\
+# npm install
+# npm run dev   or npm run build 
 
 
 

@@ -4,6 +4,9 @@
         <p>Many Details</p>
         <p>User name:{{myName}}</p>
         <p>User name:{{switchName()}}</p>
+        <p>Age:{{userAge}}</p>
+        <button @click="resetName"> Reset the Name </button>
+        <button @click="resetFn()"> Reset the Name Parent </button>
     </div>
 </template>
 
@@ -15,7 +18,9 @@
              type:String,
              //required:true,
              default:"xpto"
-         }
+         },
+         resetFn: Function,
+         userAge:Number
         //   myName:{
         //      type:Object,
         //     default:function(){
@@ -25,9 +30,12 @@
         //     }     
      },
      methods:{
-         switchName()
-         {
+         switchName() {
              return this.myName.split("").reverse().join("");
+         },
+          resetName() {              
+             this.myName = "Max";
+             this.$emit('nameWasReset',this.myName);
          }
      }
  }     

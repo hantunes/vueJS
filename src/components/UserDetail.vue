@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import {eventBus } from '../main';
  export default {
      props:{ // props que podemos passar do pai 
         // myName:[String,Array] // podemos definir varios tipos para o tipo do myNAme
@@ -37,6 +38,11 @@
              this.myName = "Max";
              this.$emit('nameWasReset',this.myName);
          }
+     },
+     created(){
+            eventBus.$on('ageWasEdited',(age)=>{
+            this.userAge = age;
+            });
      }
  }     
 </script>

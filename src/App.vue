@@ -2,44 +2,36 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <button @click="selectedComponent= 'appQuote'">Quote</button>
-                <button @click="selectedComponent= 'appAuthor'">Author</button>
-                <button @click="selectedComponent= 'appNew'">New</button>
-                
+                <br>
+                <button class="btn btn-primary" @click="selectedComponent='appBlue'">Load Blue Template</button>
+                <button class="btn btn-success" @click="selectedComponent='appGreen'">Load Green Template</button>
+                <button class="btn btn-danger"  @click="selectedComponent='appRed'">Load Red Template</button>
                 <hr>
                 <p>{{selectedComponent}}</p>
-               <!-- <app-quote >
-                    <h2 slot="title">{{quoteTitle}}</h2>
-                    <p >A winderfull Quote!</p>
-
-               </app-quote> -->
-                <keep-alive>   <!--Para não deixar fazer o destroy do componente  -->
-                        <component :is="selectedComponent">
-                        <p>Default Content</p>
-                        </component>
-               </keep-alive>
+                <component :is="selectedComponent"> Olá mundo</component>                
             </div>
         </div>
     </div>
 </template>
 
 <script>
- import Quote from "./components/Quote.vue";
- import Author from "./components/Author.vue";
- import New from "./components/New.vue";
-export default {
-  data: function() {
-    return {
-      quoteTitle: "The Quote1",
-      selectedComponent:'appQuote'
-    };
-  },
-  components: {
-    appQuote: Quote,
-     appAuthor: Author,
-     appNew:New
-  }
-};
+    import Blue from './components/Blue.vue';
+    import Green from './components/Green.vue';
+    import Red from './components/Red.vue';
+
+    export default {
+        data: function()
+        {
+            return{
+            selectedComponent:'appBlue'
+            }
+        },
+        components: {
+            appBlue: Blue,
+            appGreen: Green,
+            appRed: Red
+        }
+    }
 </script>
 
 <style>

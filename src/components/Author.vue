@@ -3,6 +3,7 @@
         <div >
            <h3>The Author</h3>
         </div>
+    </div>
 </template>
 
 <script>

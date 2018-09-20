@@ -128,7 +128,7 @@
                             <li v-for="item in sendMail">{{item}}</li>
                         </ul>
                         <p>Gender: {{gender}}</p>
-                        <p>Priority:</p>
+                        <p>Priority:{{selectedPriority}}</p>
                         <p>Switched:</p>
                     </div>
                 </div>

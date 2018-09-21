@@ -11,7 +11,8 @@
                                 type="text"
                                 id="email"
                                 class="form-control"
-                                v-model.lazy="userData.email"> <!-- lazy usado para apenas actualizar o valor quando  se clicar fora do input  -->
+                                :value="userData.email"
+                                @input="userData.email = $event.target.value"> <!-- :value e @input... é outra maneira de fazer o bind e é uma boa maneira de perceber como funcionam o componentes (Podemos fazer o nosso proprio componente )  -->
                                 {{userData.email}}
                     </div>
                     <div class="form-group">
@@ -19,8 +20,9 @@
                         <input
                                 type="password"
                                 id="password"
-                                class="form-control"
-                                  v-model="userData.password">
+                                class="form-control"                                 
+                                  v-model="userData.password"
+                                  >
                     </div>
                     <div class="form-group">
                         <label for="age">Age</label>
@@ -28,7 +30,7 @@
                                 type="number"
                                 id="age"
                                 class="form-control"
-                                v-model="userData.age">
+                                v-model.lazy="userData.age"> <!-- lazy usado para apenas actualizar o valor quando  se clicar fora do input  -->
                     </div>
 
                 </div>
@@ -102,17 +104,26 @@
                     </select>
                 </div>
             </div>
+
+              <div class="row">
+                  <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
+                        <app-switch v-model="dataSwitch"></app-switch>
+                  </div>
+              </div>
+
             <hr>
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <button
-                            class="btn btn-primary">Submit!
+                            class="btn btn-primary"
+                            @click.prevent="Submited"
+                            >Submit!                            
                     </button>
                 </div>
             </div>
         </form>
         <hr>
-        <div class="row">
+        <div class="row" v-if="isSubmitted">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -129,7 +140,7 @@
                         </ul>
                         <p>Gender: {{gender}}</p>
                         <p>Priority:{{selectedPriority}}</p>
-                        <p>Switched:</p>
+                        <p>Switched:{{dataSwitch}}</p>
                     </div>
                 </div>
             </div>
@@ -138,20 +149,32 @@
 </template>
 
 <script>
+import Switch from "./Switch.vue";
+
 export default {
   data() {
     return {
       userData: {
         email: "",
         password: "",
-        age: 27     
+        age: 27
       },
-         message:"A new Message",
-         sendMail:[],
-         gender:"Male",
-         priorities:['High','Medium','Low'],
-         selectedPriority:'High'
+      message: "A new Message",
+      sendMail: [],
+      gender: "Male",
+      priorities: ["High", "Medium", "Low"],
+      selectedPriority: "High",
+      dataSwitch: true,
+      isSubmitted :false
     };
+  },
+  methods: {
+    Submited() {
+      this.isSubmitted = true;
+    }
+  },
+  components: {
+    appSwitch: Switch
   }
 };
 </script>

@@ -2,63 +2,30 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <h1>Directives</h1>
-                <p v-text="'Some text'"></p>
-                <p v-html="'<strong> Some Strong</strong>'"></p>
+                <h1 v-myon:click="clicked">Directives Exercise</h1>
+                <!-- Exercise -->
+                <!-- Build a Custom Directive which works like v-on (Listen for Events) -->
+
             </div>
         </div>
-
-        <div class="row">
-                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                    <h1>Custom Directives</h1>
-                    <!-- usar diretiva global  e um modifier  -->
-                    <p v-highlight:background.delayed="'red'">Color this </p>
-                    <!-- usar directiva local  -->
-                    <!-- <p v-local-highlight:background.delayed.blink="'red'">Color this </p>-->
-                    <p v-local-highlight:background.delayed.blink="{mainColor:'red', secondColor:'yellow', delay:'500'}">Color this </p>
-
-                </div>
-            </div>
     </div>
 </template>
 
 <script>
 export default {
-  //Usar local directives
   directives: {
-    "local-highlight": {
-      bind(el, binding, vnode) {
-        var delay = 0;
-
-        //usar modifiers (neste caso delayed)
-        if (binding.modifiers["delayed"]) {            
-          delay = 3000;
-        }
-        //usar modifiers (neste caso blink)
-        if (binding.modifiers["blink"]) {
-          let mainColor = binding.value.mainColor;
-          let secondColor = binding.value.secondColor;;
-          let currentColor = mainColor;
-
-          setTimeout(() => {
-            setInterval(() => {
-              currentColor == secondColor ? (currentColor = mainColor) : (currentColor = secondColor);
-
-              if (binding.arg == "background")
-                el.style.backgroundColor = currentColor;
-              else el.style.color = currentColor;
-
-            }, binding.value.delay);
-          }, 1000);
-        } else {
-          setTimeout(() => {
-            //usar arguments neste caso o background
-            if (binding.arg == "background")
-              el.style.backgroundColor = binding.value.mainColor;
-            else el.style.color = binding.value;
-          }, delay);
+      myon: {
+        bind(el, binding) {
+          const type = binding.arg;
+          const fn = binding.value;
+          el.addEventListener(type, fn);
+             
         }
       }
+  },
+  methods: {
+    clicked() {
+      alert("MyClick");
     }
   }
 };

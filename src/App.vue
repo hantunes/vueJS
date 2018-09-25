@@ -14,7 +14,9 @@
                     <!-- usar diretiva global  e um modifier  -->
                     <p v-highlight:background.delayed="'red'">Color this </p>
                     <!-- usar directiva local  -->
-                    <p v-local-highlight:background.delayed.blink="'red'">Color this </p>                   
+                    <!-- <p v-local-highlight:background.delayed.blink="'red'">Color this </p>-->
+                    <p v-local-highlight:background.delayed.blink="{mainColor:'red', secondColor:'yellow', delay:'500'}">Color this </p>
+
                 </div>
             </div>
     </div>
@@ -34,8 +36,8 @@ export default {
         }
         //usar modifiers (neste caso blink)
         if (binding.modifiers["blink"]) {
-          let mainColor = binding.value; // cor que o user passa por argumento
-          let secondColor = "blue";
+          let mainColor = binding.value.mainColor;
+          let secondColor = binding.value.secondColor;;
           let currentColor = mainColor;
 
           setTimeout(() => {
@@ -46,13 +48,13 @@ export default {
                 el.style.backgroundColor = currentColor;
               else el.style.color = currentColor;
 
-            }, 1000);
-          }, delay);
+            }, binding.value.delay);
+          }, 1000);
         } else {
           setTimeout(() => {
             //usar arguments neste caso o background
             if (binding.arg == "background")
-              el.style.backgroundColor = binding.value;
+              el.style.backgroundColor = binding.value.mainColor;
             else el.style.color = binding.value;
           }, delay);
         }

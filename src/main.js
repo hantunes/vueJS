@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+//Usar Global  directives 
 Vue.directive('highlight', {
 
   bind(el, binding, vnode) {
@@ -22,7 +23,7 @@ Vue.directive('highlight', {
         el.style.color = binding.value;
     }, delay);
   }
-  
+
 });
 
 new Vue({

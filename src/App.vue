@@ -2,9 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <h1 v-myon:click="clicked">Directives Exercise</h1>
-                <!-- Exercise -->
-                <!-- Build a Custom Directive which works like v-on (Listen for Events) -->
+                <h1>Filters & Mixins</h1>
+                <p>{{text | toUppercase | to-lowercase}}</p>
+                <hr>
+                <input v-model="filterText">
+                <ul>
+                    <li v-for="fruit in filteredFruits" >{{fruit}}</li>
+                </ul>
 
             </div>
         </div>
@@ -12,24 +16,33 @@
 </template>
 
 <script>
-export default {
-  directives: {
-      myon: {
-        bind(el, binding) {
-          const type = binding.arg;
-          const fn = binding.value;
-          el.addEventListener(type, fn);
-             
+    export default {
+
+        data()
+        {
+            return{
+                text:'Hello there',
+                fruits:['Apple','Banana','Manga','Melon'],
+                filterText:''
+            }
+        }, // filtro local 
+        filters:{
+            toUppercase(value){
+                return value.toUpperCase();
+
+            }
+        },
+        computed:{ // usamos computed para o "filtro" da lista para n estrar sempre a "recalcular" 
+            filteredFruits(){
+                return this.fruits.filter((element)=>{
+                    return element.match(this.filterText)
+
+                });
+            }
         }
-      }
-  },
-  methods: {
-    clicked() {
-      alert("MyClick");
     }
-  }
-};
 </script>
 
 <style>
+
 </style>

@@ -5,6 +5,7 @@
                 <h1>Filters & Mixins</h1>
                 <p>{{text | toUppercase | to-lowercase}}</p>
                 <hr>
+                <button @click="fruits.push('Hugo')">Add new item </button>
                 <input v-model="filterText">
                 <ul>
                     <li v-for="fruit in filteredFruits" >{{fruit}}</li>
@@ -18,14 +19,15 @@
 
 <script>
 import List from './List.vue';
-    export default {
+import { fruitMixin } from "./fruitMixin.js";
 
+    export default {
+        mixins:[fruitMixin],
         data()
         {
             return{
                 text:'Hello there',
-                fruits:['Apple','Banana','Manga','Melon'],
-                filterText:''
+               
             }
         }, // filtro local 
         filters:{
@@ -34,14 +36,7 @@ import List from './List.vue';
 
             }
         },
-        computed:{ // usamos computed para o "filtro" da lista para n estrar sempre a "recalcular" 
-            filteredFruits(){
-                return this.fruits.filter((element)=>{
-                    return element.match(this.filterText)
-
-                });
-            }
-        },
+       
         components:{
             appList:List
         }

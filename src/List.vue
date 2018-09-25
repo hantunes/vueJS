@@ -9,21 +9,13 @@
 </template>
 
 <script>
+import { fruitMixin } from "./fruitMixin.js";
+
 export default {
-  data() {
-    return {
-      fruits: ["Apple", "Banana", "Manga", "Melon"],
-      filterText: ""
-    };
-  },
-  computed: {
-    // usamos computed para o "filtro" da lista para n estrar sempre a "recalcular"
-    filteredFruits() {
-      return this.fruits.filter(element => {
-        return element.match(this.filterText);
-      });
-    }
-  }
+ mixins:[fruitMixin],
+      created(){ 
+          console.log("Inside List Created Hook");
+      }
 };
 </script>
 
